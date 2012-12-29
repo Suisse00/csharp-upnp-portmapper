@@ -13,14 +13,24 @@ namespace NET_PortMapper
 {
     public partial class AddMapping : Form
     {
+        public enum AddPortOptions { TCP, UDP, Both }
+        
         public bool success = false;
-        public string description, protocol;
+        public string description;
         public int localport, publicport;
+        public AddPortOptions protocol;
         
         public AddMapping()
         {
             InitializeComponent();
+
+            cbProtocol.Items.Clear();
+            string[] items = Enum.GetNames(typeof(AddPortOptions));
+            for (int i = 0; i < items.Length; i++)
+                cbProtocol.Items.Add(items[i]);
             cbProtocol.Text = "TCP";
+            protocol = AddPortOptions.TCP;
+
             tbDescription.Text = "My Port Map";
         }
 
@@ -47,7 +57,10 @@ namespace NET_PortMapper
 
         private void cbProtocol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            protocol = cbProtocol.Text;
+            string[] items = Enum.GetNames(typeof(AddPortOptions));
+            for (int i = 0; i < items.Length; i++)
+                if (items[i] == cbProtocol.Text)
+                    protocol = (AddPortOptions)i;
         }
     }
 }

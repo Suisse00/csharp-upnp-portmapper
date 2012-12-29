@@ -183,39 +183,59 @@ namespace NET_PortMapper
             about.ShowDialog();
         }
 
+
+        private void AddMap(ref INatDevice device, Protocol ptype, int localport, int publicport, string description)
+        {
+            try
+            {
+                Mapping mapper = null;
+                mapper = new Mapping(Protocol.Tcp, localport, publicport);
+                mapper.Description = description;
+                device.CreatePortMap(mapper);
+            }
+            catch (MappingException)
+            {
+                MessageBox.Show("Sorry, something went wrong.\n"
+                    + "Could not add the port due to an error.\n"
+                    + "This error may occur because the port is already taken\n"
+                    + "or the port lies within a not allowed range.\n\n"
+                    + "Try a different port, for example above 1024.", "Error...");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("An unknown error occurred. The content of the error is:\n\n" + e.ToString(), "Error...");
+            }
+        }
+
         private void btAdd_Click(object sender, EventArgs e)
         {
             if (lvDevices.SelectedItems.Count > 0)
             {
                 INatDevice device = GetDeviceByUUID(lvDevices.SelectedItems[0].SubItems[3].Text);
                 AddMapping map = new AddMapping();
-                Mapping mapper = null;
+                
                 map.ShowDialog();
                 if (map.success)
                 {
-                    if (map.protocol.ToUpper() == "BOTH")
+                    if (map.protocol == AddMapping.AddPortOptions.Both)
                     {
-                        mapper = new Mapping(Protocol.Tcp, map.localport, map.publicport);
-                        mapper.Description = map.description;
-                        device.CreatePortMap(mapper);
-                        mapper = new Mapping(Protocol.Udp, map.localport, map.publicport);
-                        mapper.Description = map.description;
-                        device.CreatePortMap(mapper);
+                        AddMap(ref device, Protocol.Tcp, map.localport, map.publicport, map.description);
+                        AddMap(ref device, Protocol.Udp, map.localport, map.publicport, map.description);
                     }
-                    else if (map.protocol.ToUpper() == "TCP")
+                    else if (map.protocol == AddMapping.AddPortOptions.TCP)
                     {
-                        mapper = new Mapping(Protocol.Tcp, map.localport, map.publicport);
-                        mapper.Description = map.description;
-                        device.CreatePortMap(mapper);
+                        AddMap(ref device, Protocol.Tcp, map.localport, map.publicport, map.description);
                     }
-                    else if (map.protocol.ToUpper() == "UDP")
+                    else if (map.protocol == AddMapping.AddPortOptions.UDP)
                     {
-                        mapper = new Mapping(Protocol.Udp, map.localport, map.publicport);
-                        mapper.Description = map.description;
-                        device.CreatePortMap(mapper);
+                        AddMap(ref device, Protocol.Udp, map.localport, map.publicport, map.description);
                     }
                     UpdateMappings(lvDevices.SelectedItems[0].SubItems[3].Text);
                 }
+            }
+            else
+            {
+                MessageBox.Show("Please select a device from the devices list to add the portmap to", "Oops...");
             }
         }
 

@@ -148,10 +148,6 @@
             // 
             this.cbProtocol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProtocol.FormattingEnabled = true;
-            this.cbProtocol.Items.AddRange(new object[] {
-            "TCP",
-            "UDP",
-            "Both"});
             this.cbProtocol.Location = new System.Drawing.Point(75, 84);
             this.cbProtocol.Name = "cbProtocol";
             this.cbProtocol.Size = new System.Drawing.Size(121, 21);
