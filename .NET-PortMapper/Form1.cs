@@ -189,7 +189,7 @@ namespace NET_PortMapper
             try
             {
                 Mapping mapper = null;
-                mapper = new Mapping(Protocol.Tcp, localport, publicport);
+                mapper = new Mapping(ptype, localport, publicport);
                 mapper.Description = description;
                 device.CreatePortMap(mapper);
             }
