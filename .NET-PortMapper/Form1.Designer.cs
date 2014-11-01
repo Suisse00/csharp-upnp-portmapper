@@ -37,21 +37,21 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbMappings = new System.Windows.Forms.GroupBox();
-            this.gbDeviceInfo = new System.Windows.Forms.GroupBox();
-            this.tbDeviceInfo = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btAbout = new System.Windows.Forms.Button();
-            this.btAdd = new System.Windows.Forms.Button();
-            this.btRemove = new System.Windows.Forms.Button();
             this.lvMappings = new System.Windows.Forms.ListView();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gbDeviceInfo = new System.Windows.Forms.GroupBox();
+            this.tbDeviceInfo = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btUpdate = new System.Windows.Forms.Button();
             this.btRemoveAll = new System.Windows.Forms.Button();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btAbout = new System.Windows.Forms.Button();
+            this.btAdd = new System.Windows.Forms.Button();
+            this.btRemove = new System.Windows.Forms.Button();
             this.timerCurrent = new System.Windows.Forms.Timer(this.components);
             this.timerBackground = new System.Windows.Forms.Timer(this.components);
-            this.btUpdate = new System.Windows.Forms.Button();
             this.gbDevices.SuspendLayout();
             this.gbMappings.SuspendLayout();
             this.gbDeviceInfo.SuspendLayout();
@@ -115,10 +115,46 @@
             this.gbMappings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbMappings.Location = new System.Drawing.Point(0, 157);
             this.gbMappings.Name = "gbMappings";
-            this.gbMappings.Size = new System.Drawing.Size(734, 405);
+            this.gbMappings.Size = new System.Drawing.Size(734, 372);
             this.gbMappings.TabIndex = 1;
             this.gbMappings.TabStop = false;
             this.gbMappings.Text = "Mappings";
+            // 
+            // lvMappings
+            // 
+            this.lvMappings.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader5,
+            this.columnHeader9,
+            this.columnHeader10,
+            this.columnHeader11});
+            this.lvMappings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvMappings.GridLines = true;
+            this.lvMappings.Location = new System.Drawing.Point(3, 16);
+            this.lvMappings.Name = "lvMappings";
+            this.lvMappings.Size = new System.Drawing.Size(464, 353);
+            this.lvMappings.TabIndex = 3;
+            this.lvMappings.UseCompatibleStateImageBehavior = false;
+            this.lvMappings.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Description";
+            this.columnHeader5.Width = 150;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Local-Port";
+            this.columnHeader9.Width = 100;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Public-Port";
+            this.columnHeader10.Width = 100;
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Protocol";
+            this.columnHeader11.Width = 100;
             // 
             // gbDeviceInfo
             // 
@@ -126,7 +162,7 @@
             this.gbDeviceInfo.Dock = System.Windows.Forms.DockStyle.Right;
             this.gbDeviceInfo.Location = new System.Drawing.Point(467, 16);
             this.gbDeviceInfo.Name = "gbDeviceInfo";
-            this.gbDeviceInfo.Size = new System.Drawing.Size(264, 386);
+            this.gbDeviceInfo.Size = new System.Drawing.Size(264, 353);
             this.gbDeviceInfo.TabIndex = 2;
             this.gbDeviceInfo.TabStop = false;
             this.gbDeviceInfo.Text = "Device Information";
@@ -139,7 +175,7 @@
             this.tbDeviceInfo.Name = "tbDeviceInfo";
             this.tbDeviceInfo.ReadOnly = true;
             this.tbDeviceInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbDeviceInfo.Size = new System.Drawing.Size(258, 367);
+            this.tbDeviceInfo.Size = new System.Drawing.Size(258, 334);
             this.tbDeviceInfo.TabIndex = 0;
             // 
             // panel1
@@ -154,6 +190,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(734, 33);
             this.panel1.TabIndex = 2;
+            // 
+            // btUpdate
+            // 
+            this.btUpdate.Location = new System.Drawing.Point(276, 7);
+            this.btUpdate.Name = "btUpdate";
+            this.btUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btUpdate.TabIndex = 4;
+            this.btUpdate.Text = "Update";
+            this.btUpdate.UseVisualStyleBackColor = true;
+            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
+            // 
+            // btRemoveAll
+            // 
+            this.btRemoveAll.Location = new System.Drawing.Point(168, 7);
+            this.btRemoveAll.Name = "btRemoveAll";
+            this.btRemoveAll.Size = new System.Drawing.Size(102, 23);
+            this.btRemoveAll.TabIndex = 3;
+            this.btRemoveAll.Text = "Remove All";
+            this.btRemoveAll.UseVisualStyleBackColor = true;
+            this.btRemoveAll.Click += new System.EventHandler(this.btRemoveAll_Click);
             // 
             // btAbout
             // 
@@ -185,52 +241,6 @@
             this.btRemove.UseVisualStyleBackColor = true;
             this.btRemove.Click += new System.EventHandler(this.btRemove_Click);
             // 
-            // lvMappings
-            // 
-            this.lvMappings.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader5,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11});
-            this.lvMappings.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvMappings.GridLines = true;
-            this.lvMappings.Location = new System.Drawing.Point(3, 16);
-            this.lvMappings.Name = "lvMappings";
-            this.lvMappings.Size = new System.Drawing.Size(464, 386);
-            this.lvMappings.TabIndex = 3;
-            this.lvMappings.UseCompatibleStateImageBehavior = false;
-            this.lvMappings.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Local-Port";
-            this.columnHeader9.Width = 100;
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Public-Port";
-            this.columnHeader10.Width = 100;
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Protocol";
-            this.columnHeader11.Width = 100;
-            // 
-            // btRemoveAll
-            // 
-            this.btRemoveAll.Location = new System.Drawing.Point(168, 7);
-            this.btRemoveAll.Name = "btRemoveAll";
-            this.btRemoveAll.Size = new System.Drawing.Size(102, 23);
-            this.btRemoveAll.TabIndex = 3;
-            this.btRemoveAll.Text = "Remove All";
-            this.btRemoveAll.UseVisualStyleBackColor = true;
-            this.btRemoveAll.Click += new System.EventHandler(this.btRemoveAll_Click);
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Description";
-            this.columnHeader5.Width = 150;
-            // 
             // timerCurrent
             // 
             this.timerCurrent.Interval = 1000;
@@ -241,23 +251,13 @@
             this.timerBackground.Interval = 10000;
             this.timerBackground.Tick += new System.EventHandler(this.timerBackground_Tick);
             // 
-            // btUpdate
-            // 
-            this.btUpdate.Location = new System.Drawing.Point(276, 7);
-            this.btUpdate.Name = "btUpdate";
-            this.btUpdate.Size = new System.Drawing.Size(75, 23);
-            this.btUpdate.TabIndex = 4;
-            this.btUpdate.Text = "Update";
-            this.btUpdate.UseVisualStyleBackColor = true;
-            this.btUpdate.Click += new System.EventHandler(this.btUpdate_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 562);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gbMappings);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.gbDevices);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(750, 600);
