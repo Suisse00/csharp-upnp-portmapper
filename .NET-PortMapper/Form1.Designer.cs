@@ -208,7 +208,7 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "Publuc-Port";
+            this.columnHeader10.Text = "Public-Port";
             this.columnHeader10.Width = 100;
             // 
             // columnHeader11
@@ -228,7 +228,7 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Discription";
+            this.columnHeader5.Text = "Description";
             this.columnHeader5.Width = 150;
             // 
             // timerCurrent
