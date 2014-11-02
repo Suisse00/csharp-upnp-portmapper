@@ -296,7 +296,7 @@ namespace Mono.Nat.Upnp
 				}
 			}
 			if (mappingResult.Mappings.Count == 0)
-				return new Mapping (Protocol.Tcp, -1, -1);
+				return new Mapping (Protocol.Tcp, IPAddress.None, -1, -1);
 
 			return mappingResult.Mappings[0];
 		}
@@ -434,7 +434,7 @@ namespace Mono.Nat.Upnp
 			GetGenericPortMappingEntryResponseMessage message = mappingResult.SavedMessage as GetGenericPortMappingEntryResponseMessage;
 			if (message != null)
 			{
-				Mapping mapping = new Mapping (message.Protocol, message.InternalPort, message.ExternalPort, message.LeaseDuration);
+				Mapping mapping = new Mapping (message.Protocol, message.InternalClient, message.InternalPort, message.ExternalPort, message.LeaseDuration);
 				mapping.Description = message.PortMappingDescription;
 				mappingResult.Mappings.Add(mapping);
 				GetGenericPortMappingEntry next = new GetGenericPortMappingEntry(mappingResult.Mappings.Count, this);
@@ -469,7 +469,7 @@ namespace Mono.Nat.Upnp
 			GetAllMappingsAsyncResult mappingResult = result.AsyncState as GetAllMappingsAsyncResult;
 			GetGenericPortMappingEntryResponseMessage message = mappingResult.SavedMessage as GetGenericPortMappingEntryResponseMessage;
 			if (message != null) {
-				Mapping mapping = new Mapping(mappingResult.SpecificMapping.Protocol, message.InternalPort, mappingResult.SpecificMapping.PublicPort, message.LeaseDuration);
+				Mapping mapping = new Mapping(mappingResult.SpecificMapping.Protocol, message.InternalClient, message.InternalPort, mappingResult.SpecificMapping.PublicPort, message.LeaseDuration);
 				mapping.Description = mappingResult.SpecificMapping.Description;
 				mappingResult.Mappings.Add(mapping);
 			}

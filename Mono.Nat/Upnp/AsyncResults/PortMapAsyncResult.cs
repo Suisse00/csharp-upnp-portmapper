@@ -65,7 +65,7 @@ namespace Mono.Nat.Upnp
 				GetSpecificPortMappingEntryMessage mapMessage = (GetSpecificPortMappingEntryMessage)message;
 				GetAllMappingsAsyncResult result = new GetAllMappingsAsyncResult(request, storedCallback, asyncState);
 				
-				result.SpecificMapping = new Mapping(mapMessage.protocol, 0, mapMessage.externalPort, 0);
+				result.SpecificMapping = new Mapping(mapMessage.protocol, IPAddress.None, 0, mapMessage.externalPort, 0);
 				return result;
 			}
 

@@ -63,7 +63,9 @@ namespace Mono.Nat.Upnp
             WriteFullElement(writer, "NewExternalPort", this.mapping.PublicPort.ToString(culture));
             WriteFullElement(writer, "NewProtocol", this.mapping.Protocol == Protocol.Tcp ? "TCP" : "UDP");
             WriteFullElement(writer, "NewInternalPort", this.mapping.PrivatePort.ToString(culture));
-            WriteFullElement(writer, "NewInternalClient", this.localIpAddress.ToString());
+            WriteFullElement(writer, "NewInternalClient", this.mapping.InternalIP == IPAddress.None 
+                                                            ? this.localIpAddress.ToString() 
+                                                            : this.mapping.InternalIP.ToString());
             WriteFullElement(writer, "NewEnabled", "1");
             WriteFullElement(writer, "NewPortMappingDescription", string.IsNullOrEmpty(mapping.Description) ? "Mono.Nat" : mapping.Description);
             WriteFullElement(writer, "NewLeaseDuration", mapping.Lifetime.ToString());

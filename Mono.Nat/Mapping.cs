@@ -27,6 +27,7 @@
 //
 
 using System;
+using System.Net;
 
 namespace Mono.Nat
 {
@@ -37,18 +38,20 @@ namespace Mono.Nat
         private int lifetime;
         private int privatePort;
 		private Protocol protocol;
+        private IPAddress internalIP;
 		private int publicPort;
 		
 
 
-		public Mapping (Protocol protocol, int privatePort, int publicPort)
-			: this (protocol, privatePort, publicPort, 0)
+		public Mapping (Protocol protocol, IPAddress internalIP, int privatePort, int publicPort)
+			: this (protocol, internalIP, privatePort, publicPort, 0)
 		{
 		}
 		
-		public Mapping (Protocol protocol, int privatePort, int publicPort, int lifetime)
+		public Mapping (Protocol protocol, IPAddress internalIP, int privatePort, int publicPort, int lifetime)
 		{
 			this.protocol = protocol;
+			this.internalIP = internalIP;
 			this.privatePort = privatePort;
 			this.publicPort = publicPort;
 			this.lifetime = lifetime;
@@ -72,7 +75,11 @@ namespace Mono.Nat
 			get { return protocol; }
 			internal set { protocol = value; }
 		}
-
+		public IPAddress InternalIP
+		{
+			get { return internalIP; }
+			internal set { internalIP = value; }
+		}
 		public int PrivatePort
 		{
 			get { return privatePort; }

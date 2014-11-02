@@ -26,6 +26,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Xml;
 
@@ -37,7 +38,7 @@ namespace Mono.Nat.Upnp
         private int externalPort;
         private Protocol protocol;
         private int internalPort;
-        private string internalClient;
+        private IPAddress internalClient;
         private bool enabled;
         private string portMappingDescription;
         private int leaseDuration;
@@ -62,7 +63,7 @@ namespace Mono.Nat.Upnp
             get { return this.internalPort; }
         }
 
-        public string InternalClient
+        public IPAddress InternalClient
         {
             get { return this.internalClient; }
         }
@@ -94,7 +95,7 @@ namespace Mono.Nat.Upnp
                 protocol = Protocol.Udp;
 
             internalPort = Convert.ToInt32(data["NewInternalPort"].InnerText);
-            internalClient = data["NewInternalClient"].InnerText;
+            internalClient = IPAddress.Parse(data["NewInternalClient"].InnerText);
             enabled = data["NewEnabled"].InnerText == "1" ? true : false;
             portMappingDescription = data["NewPortMappingDescription"].InnerText;
             leaseDuration = Convert.ToInt32(data["NewLeaseDuration"].InnerText);

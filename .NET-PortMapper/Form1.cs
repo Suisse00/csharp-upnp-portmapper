@@ -174,6 +174,7 @@ namespace NET_PortMapper
                 lvMappings.Items[lvMappings.Items.Count - 1].SubItems.Add(mp.PrivatePort.ToString());
                 lvMappings.Items[lvMappings.Items.Count - 1].SubItems.Add(mp.PublicPort.ToString());
                 lvMappings.Items[lvMappings.Items.Count - 1].SubItems.Add(mp.Protocol.ToString());
+                lvMappings.Items[lvMappings.Items.Count - 1].SubItems.Add(mp.InternalIP.ToString());
             }
         }
 
@@ -184,12 +185,12 @@ namespace NET_PortMapper
         }
 
 
-        private void AddMap(ref INatDevice device, Protocol ptype, int localport, int publicport, string description)
+        private void AddMap(ref INatDevice device, Protocol ptype, IPAddress internalIP, int localport, int publicport, string description)
         {
             try
             {
                 Mapping mapper = null;
-                mapper = new Mapping(ptype, localport, publicport);
+                mapper = new Mapping(ptype, internalIP, localport, publicport);
                 mapper.Description = description;
                 device.CreatePortMap(mapper);
             }
@@ -219,16 +220,16 @@ namespace NET_PortMapper
                 {
                     if (map.protocol == AddMapping.AddPortOptions.Both)
                     {
-                        AddMap(ref device, Protocol.Tcp, map.localport, map.publicport, map.description);
-                        AddMap(ref device, Protocol.Udp, map.localport, map.publicport, map.description);
+                        AddMap(ref device, Protocol.Tcp, map.internalIP, map.localport, map.publicport, map.description);
+                        AddMap(ref device, Protocol.Udp, map.internalIP, map.localport, map.publicport, map.description);
                     }
                     else if (map.protocol == AddMapping.AddPortOptions.TCP)
                     {
-                        AddMap(ref device, Protocol.Tcp, map.localport, map.publicport, map.description);
+                        AddMap(ref device, Protocol.Tcp, map.internalIP, map.localport, map.publicport, map.description);
                     }
                     else if (map.protocol == AddMapping.AddPortOptions.UDP)
                     {
-                        AddMap(ref device, Protocol.Udp, map.localport, map.publicport, map.description);
+                        AddMap(ref device, Protocol.Udp, map.internalIP, map.localport, map.publicport, map.description);
                     }
                     UpdateMappings(lvDevices.SelectedItems[0].SubItems[3].Text);
                 }

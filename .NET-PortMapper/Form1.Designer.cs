@@ -52,6 +52,7 @@
             this.btRemove = new System.Windows.Forms.Button();
             this.timerCurrent = new System.Windows.Forms.Timer(this.components);
             this.timerBackground = new System.Windows.Forms.Timer(this.components);
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbDevices.SuspendLayout();
             this.gbMappings.SuspendLayout();
             this.gbDeviceInfo.SuspendLayout();
@@ -126,7 +127,8 @@
             this.columnHeader5,
             this.columnHeader9,
             this.columnHeader10,
-            this.columnHeader11});
+            this.columnHeader11,
+            this.columnHeader6});
             this.lvMappings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvMappings.GridLines = true;
             this.lvMappings.Location = new System.Drawing.Point(3, 16);
@@ -144,17 +146,16 @@
             // columnHeader9
             // 
             this.columnHeader9.Text = "Local-Port";
-            this.columnHeader9.Width = 100;
             // 
             // columnHeader10
             // 
             this.columnHeader10.Text = "Public-Port";
-            this.columnHeader10.Width = 100;
+            this.columnHeader10.Width = 63;
             // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Protocol";
-            this.columnHeader11.Width = 100;
+            this.columnHeader11.Width = 51;
             // 
             // gbDeviceInfo
             // 
@@ -251,6 +252,11 @@
             this.timerBackground.Interval = 10000;
             this.timerBackground.Tick += new System.EventHandler(this.timerBackground_Tick);
             // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "IP-Address";
+            this.columnHeader6.Width = 93;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,6 +302,7 @@
         private System.Windows.Forms.Timer timerCurrent;
         private System.Windows.Forms.Timer timerBackground;
         private System.Windows.Forms.Button btUpdate;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
     }
 }
 

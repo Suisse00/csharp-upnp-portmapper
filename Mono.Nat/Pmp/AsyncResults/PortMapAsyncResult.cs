@@ -25,6 +25,7 @@
 //
 
 using System;
+using System.Net;
 
 namespace Mono.Nat.Pmp
 {
@@ -38,10 +39,10 @@ namespace Mono.Nat.Pmp
 			this.mapping = mapping;
 		}
 		
-		internal PortMapAsyncResult (Protocol protocol, int port, int lifetime, AsyncCallback callback, object asyncState)
+		internal PortMapAsyncResult (Protocol protocol, IPAddress internalIP, int port, int lifetime, AsyncCallback callback, object asyncState)
 			: base (callback, asyncState)
 		{
-			this.mapping = new Mapping (protocol, port, port, lifetime);
+			this.mapping = new Mapping (protocol, internalIP, port, port, lifetime);
 		}
 		
 		internal Mapping Mapping

@@ -18,10 +18,13 @@ namespace NET_PortMapper
         public bool success = false;
         public string description;
         public int localport, publicport;
+        public IPAddress internalIP;
         public AddPortOptions protocol;
         
         public AddMapping()
         {
+            internalIP = IPAddress.None;
+
             InitializeComponent();
 
             cbProtocol.Items.Clear();
@@ -36,8 +39,17 @@ namespace NET_PortMapper
 
         private void btOK_Click(object sender, EventArgs e)
         {
-            success = true;
-            this.Close();
+            // Validation
+            if (!String.IsNullOrEmpty(tbInternalIP.Text)
+                && !IPAddress.TryParse(tbInternalIP.Text, out internalIP))
+            {
+                MessageBox.Show("You must enter a valid IP (or an empty one to use your current ip)", "Invalid IP", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                success = true;
+                this.Close();
+            }
         }
 
         private void tbDescription_TextChanged(object sender, EventArgs e)

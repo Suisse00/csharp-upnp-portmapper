@@ -38,6 +38,8 @@
             this.btCancel = new System.Windows.Forms.Button();
             this.cbProtocol = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbInternalIP = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudLocal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPublic)).BeginInit();
             this.SuspendLayout();
@@ -163,6 +165,23 @@
             this.label4.TabIndex = 9;
             this.label4.Text = "Protocol";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 114);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "IP-Address";
+            // 
+            // tbInternalIP
+            // 
+            this.tbInternalIP.Location = new System.Drawing.Point(75, 111);
+            this.tbInternalIP.MaxLength = 40;
+            this.tbInternalIP.Name = "tbInternalIP";
+            this.tbInternalIP.Size = new System.Drawing.Size(282, 20);
+            this.tbInternalIP.TabIndex = 11;
+            // 
             // AddMapping
             // 
             this.AcceptButton = this.btOK;
@@ -171,6 +190,8 @@
             this.CancelButton = this.btCancel;
             this.ClientSize = new System.Drawing.Size(369, 184);
             this.ControlBox = false;
+            this.Controls.Add(this.tbInternalIP);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cbProtocol);
             this.Controls.Add(this.btCancel);
@@ -205,5 +226,7 @@
         private System.Windows.Forms.Button btCancel;
         private System.Windows.Forms.ComboBox cbProtocol;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox tbInternalIP;
     }
 }
